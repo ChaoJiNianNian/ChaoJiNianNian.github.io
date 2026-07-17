@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NIANNIAN — Portfolio</title>
+<style>
+  :root{
+    --bg:#050505;
+    --fg:#f2f0ea;
+    --muted:#6f6f6f;
+    --line:rgba(255,255,255,.09);
+    --accent:#c8b394;
+    --serif:"Georgia","Times New Roman","STSong",serif;
+    --sans:"Segoe UI","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+    --mono:"Cascadia Code","Consolas",monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  ::selection{background:var(--accent);color:#050505}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--fg);font-family:var(--sans);overflow-x:hidden;cursor:default}
+
+  /* film grain */
+  body::after{
+    content:"";position:fixed;inset:0;z-index:50;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  /* ambient orbs */
+  .orb{position:fixed;border-radius:50%;filter:blur(120px);z-index:0;pointer-events:none}
+  .orb.a{width:520px;height:520px;background:rgba(200,179,148,.10);top:-160px;right:-120px}
+  .orb.b{width:420px;height:420px;background:rgba(120,120,200,.07);bottom:-140px;left:-100px}
+
+  /* cursor glow */
+  #glow{position:fixed;width:480px;height:480px;border-radius:50%;z-index:1;pointer-events:none;
+    background:radial-gradient(circle,rgba(200,179,148,.06),transparent 65%);
+    transform:translate(-50%,-50%);transition:opacity .4s}
+
+  .wrap{position:relative;z-index:2;max-width:1100px;margin:0 auto;padding:0 clamp(24px,5vw,64px)}
+
+  /* nav */
+  nav{position:fixed;top:0;left:0;right:0;z-index:40;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:26px clamp(24px,5vw,64px);mix-blend-mode:difference}
+  nav .logo{font-family:var(--mono);font-size:.82rem;letter-spacing:.35em;color:#fff}
+  nav .idx{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;color:#999}
+
+  /* hero */
+  .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;position:relative}
+  .hero .kicker{font-family:var(--mono);font-size:.78rem;letter-spacing:.5em;color:var(--accent);
+    text-transform:uppercase;margin-bottom:32px;opacity:0;animation:rise 1.2s .2s cubic-bezier(.16,1,.3,1) forwards}
+  .hero h1{font-family:var(--serif);font-weight:400;line-height:1.04;letter-spacing:-.01em;
+    font-size:clamp(3.2rem,10vw,8.2rem)}
+  .hero h1 .row{display:block;overflow:hidden}
+  .hero h1 .row span{display:block;transform:translateY(110%);animation:reveal 1.4s cubic-bezier(.16,1,.3,1) forwards}
+  .hero h1 .row:nth-child(2) span{animation-delay:.12s;color:transparent;-webkit-text-stroke:1px rgba(242,240,234,.55)}
+  .hero .meta{display:flex;gap:48px;margin-top:56px;opacity:0;animation:rise 1.2s .8s cubic-bezier(.16,1,.3,1) forwards}
+  .hero .meta div{font-family:var(--mono);font-size:.74rem;letter-spacing:.18em;color:var(--muted);line-height:2}
+  .hero .meta b{display:block;color:var(--fg);font-weight:400}
+  .hero .scroll{position:absolute;bottom:40px;right:clamp(24px,5vw,64px);
+    font-family:var(--mono);font-size:.7rem;letter-spacing:.4em;color:var(--muted);
+    writing-mode:vertical-rl;display:flex;align-items:center;gap:14px}
+  .hero .scroll::after{content:"";width:1px;height:64px;background:linear-gradient(var(--muted),transparent);animation:drop 2.2s infinite}
+  @keyframes drop{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+  @keyframes reveal{to{transform:none}}
+  @keyframes rise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+
+  /* marquee */
+  .marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    overflow:hidden;white-space:nowrap;padding:20px 0;position:relative;z-index:2}
+  .marquee .track{display:inline-block;animation:slide 26s linear infinite;
+    font-family:var(--serif);font-size:1.35rem;letter-spacing:.14em;color:var(--muted)}
+  .marquee .track em{font-style:normal;color:var(--accent);margin:0 28px}
+  @keyframes slide{to{transform:translateX(-50%)}}
+
+  /* sections */
+  section{padding:clamp(90px,14vh,160px) 0;position:relative}
+  .sec-head{display:flex;align-items:baseline;gap:24px;margin-bottom:64px}
+  .sec-head .num{font-family:var(--mono);font-size:.75rem;letter-spacing:.3em;color:var(--accent)}
+  .sec-head h2{font-family:var(--serif);font-weight:400;font-size:clamp(1.8rem,4vw,3rem);letter-spacing:.02em}
+  .sec-head .rule{flex:1;height:1px;background:var(--line)}
+
+  /* about */
+  .about-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:64px}
+  @media(max-width:820px){.about-grid{grid-template-columns:1fr}}
+  .about-grid .lede{font-family:var(--serif);font-size:clamp(1.3rem,2.4vw,1.8rem);line-height:1.75;color:var(--fg)}
+  .about-grid .lede .dim{color:var(--muted)}
+  .facts{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+  .facts .row{display:flex;justify-content:space-between;padding:20px 0;border-bottom:1px solid var(--line);
+    font-size:.9rem;transition:padding .3s}
+  .facts .row:hover{padding-left:10px}
+  .facts .k{font-family:var(--mono);font-size:.72rem;letter-spacing:.22em;color:var(--muted);text-transform:uppercase}
+
+  /* principles list */
+  .plist{border-top:1px solid var(--line)}
+  .plist .item{display:grid;grid-template-columns:80px 1fr auto;align-items:center;gap:24px;
+    padding:34px 0;border-bottom:1px solid var(--line);transition:.35s;position:relative}
+  .plist .item:hover{padding-left:18px}
+  .plist .no{font-family:var(--mono);font-size:.72rem;letter-spacing:.25em;color:var(--muted)}
+  .plist h3{font-family:var(--serif);font-weight:400;font-size:clamp(1.3rem,2.6vw,2rem);letter-spacing:.02em}
+  .plist .tag{font-family:var(--mono);font-size:.7rem;letter-spacing:.2em;color:var(--accent);text-transform:uppercase}
+  .plist p{grid-column:2/4;color:var(--muted);font-size:.92rem;max-width:560px;margin-top:6px}
+
+  /* life progress */
+  .life{border:1px solid var(--line);padding:clamp(32px,5vw,64px);position:relative;overflow:hidden}
+  .life .label{font-family:var(--mono);font-size:.72rem;letter-spacing:.3em;color:var(--muted);text-transform:uppercase;margin-bottom:28px}
+  .life input{background:transparent;border:none;border-bottom:1px solid var(--line);color:var(--fg);
+    font-family:var(--mono);font-size:1rem;padding:8px 2px;outline:none;color-scheme:dark}
+  .life input:focus{border-color:var(--accent)}
+  .life .big{font-family:var(--serif);font-size:clamp(3rem,9vw,6.5rem);line-height:1.05;margin:36px 0 8px;
+    color:var(--fg);font-weight:400}
+  .life .big small{font-size:.35em;color:var(--muted);letter-spacing:.05em}
+  .life .track{height:1px;background:var(--line);margin-top:40px;position:relative}
+  .life .track .fill{position:absolute;left:0;top:-0.5px;height:2px;background:var(--accent);width:0;transition:width 1.2s cubic-bezier(.16,1,.3,1)}
+  .life .sub{margin-top:18px;font-size:.88rem;color:var(--muted)}
+  .life .sub b{color:var(--accent);font-weight:400}
+
+  /* footer */
+  footer{border-top:1px solid var(--line);padding:56px 0 40px}
+  footer .grid{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px}
+  footer .sig{font-family:var(--serif);font-size:clamp(2rem,5vw,3.4rem);letter-spacing:.04em}
+  footer .fine{font-family:var(--mono);font-size:.7rem;letter-spacing:.2em;color:var(--muted);line-height:2.2;text-align:right}
+
+  .reveal-el{opacity:0;transform:translateY(36px);transition:opacity 1s cubic-bezier(.16,1,.3,1),transform 1s cubic-bezier(.16,1,.3,1)}
+  .reveal-el.on{opacity:1;transform:none}
+</style>
+</head>
+<body>
+<div class="orb a"></div><div class="orb b"></div>
+<div id="glow"></div>
+
+<nav>
+  <div class="logo">NIANNIAN</div>
+  <div class="idx">EST. <span id="navYear"></span> — BEIJING TIME</div>
+</nav>
+
+<div class="wrap">
+
+  <header class="hero">
+    <div class="kicker">Personal Site · Vol.01</div>
+    <h1>
+      <span class="row"><span>年年</span></span>
+      <span class="row"><span>NIANNIAN</span></span>
+    </h1>
+    <div class="meta">
+      <div><b>身份</b>探索者 / Builder</div>
+      <div><b>坐标</b>中国</div>
+      <div><b>状态</b>持续折腾中</div>
+    </div>
+    <div class="scroll">SCROLL</div>
+  </header>
+
+  <div class="marquee">
+    <div class="track" id="mq">
+      先完成<em>—</em>再完美<em>—</em>慢慢来<em>—</em>比较快<em>—</em>所有伟大的事开头都很小<em>—</em>
+      先完成<em>—</em>再完美<em>—</em>慢慢来<em>—</em>比较快<em>—</em>所有伟大的事开头都很小<em>—</em>
+    </div>
+  </div>
+
+  <section id="about">
+    <div class="sec-head reveal-el">
+      <span class="num">01</span>
+      <h2>关于</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="about-grid">
+      <p class="lede reveal-el">
+        我是年年。<span class="dim">一个相信动手大于空想的人 ——</span>
+        电脑、软件、AI，感兴趣的都要亲手玩一遍。
+        <span class="dim">这个页面是起点，不是终点。</span>
+      </p>
+      <div class="facts reveal-el">
+        <div class="row"><span class="k">Focus</span><span>AI 与工具</span></div>
+        <div class="row"><span class="k">Device</span><span>MSI Vector 16 HX</span></div>
+        <div class="row"><span class="k">Motto</span><span>先出发，路上再想</span></div>
+        <div class="row"><span class="k">Now</span><span id="nowDate">—</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="principles">
+    <div class="sec-head reveal-el">
+      <span class="num">02</span>
+      <h2>信条</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="plist">
+      <div class="item reveal-el">
+        <span class="no">/01</span>
+        <h3>动手，别空想</h3>
+        <span class="tag">Build</span>
+        <p>一个跑起来的粗糙版本，胜过一百个完美的想法。</p>
+      </div>
+      <div class="item reveal-el">
+        <span class="no">/02</span>
+        <h3>把复杂留给自己</h3>
+        <span class="tag">Craft</span>
+        <p>呈现出来的东西应该简单、干净、一眼看懂。</p>
+      </div>
+      <div class="item reveal-el">
+        <span class="no">/03</span>
+        <h3>长期主义</h3>
+        <span class="tag">Grow</span>
+        <p>不追风口，只做时间站在这一边的事。</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="life">
+    <div class="sec-head reveal-el">
+      <span class="num">03</span>
+      <h2>时间</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="life reveal-el">
+      <div class="label">Life Progress — 以 80 年计</div>
+      <input type="date" id="birth" value="2000-01-01">
+      <div class="big"><span id="pct">—</span><small> %</small></div>
+      <div class="track"><div class="fill" id="fill"></div></div>
+      <p class="sub">已度过 <b id="days">—</b> 天 · 今年已行进 <b id="ypct">—</b> · 余下的每一天，都值得认真对待</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="grid">
+      <div class="sig">年年<span style="color:var(--accent)">.</span></div>
+      <div class="fine">
+        DESIGNED &amp; BUILT IN ONE SESSION<br>
+        © <span id="year"></span> NIANNIAN — ALL RIGHTS RESERVED
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script>
+// cursor glow
+const glow = document.getElementById('glow');
+addEventListener('mousemove', e => {
+  glow.style.left = e.clientX + 'px';
+  glow.style.top = e.clientY + 'px';
+});
+
+// dates
+const now = new Date();
+document.getElementById('navYear').textContent = now.getFullYear();
+document.getElementById('year').textContent = now.getFullYear();
+const weeks = ['SUN','MON','TUE','WED','THU','FRI','SAT'];
+document.getElementById('nowDate').textContent =
+  `${now.getFullYear()}.${String(now.getMonth()+1).padStart(2,'0')}.${String(now.getDate()).padStart(2,'0')} ${weeks[now.getDay()]}`;
+
+// life progress
+const birth = document.getElementById('birth');
+function calc(){
+  const b = new Date(birth.value);
+  if (isNaN(b)) return;
+  const lived = (now - b) / 86400000;
+  const pct = Math.min(100, Math.max(0, lived / (80*365.25) * 100));
+  animateNum(document.getElementById('pct'), pct, 1);
+  document.getElementById('fill').style.width = pct + '%';
+  document.getElementById('days').textContent = Math.floor(lived).toLocaleString();
+}
+const yStart = new Date(now.getFullYear(),0,1), yEnd = new Date(now.getFullYear()+1,0,1);
+document.getElementById('ypct').textContent = ((now-yStart)/(yEnd-yStart)*100).toFixed(1) + '%';
+function animateNum(el, target, dec){
+  const t0 = performance.now(), dur = 1200;
+  (function step(t){
+    const p = Math.min(1,(t-t0)/dur), e = 1-Math.pow(1-p,3);
+    el.textContent = (target*e).toFixed(dec);
+    if (p < 1) requestAnimationFrame(step);
+  })(t0);
+}
+birth.addEventListener('change', calc);
+calc();
+
+// scroll reveal
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target); }
+}), {threshold:.12});
+document.querySelectorAll('.reveal-el').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
