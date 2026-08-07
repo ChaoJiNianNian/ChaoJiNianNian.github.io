@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>模玩集市 FIGUREVERSE · 手办模型交易与鉴定平台</title>
+  <meta name="description" content="模玩集市 FIGUREVERSE——专注手办模型的二手交易、社区交流、求购与第三方鉴定担保平台。">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237c5cff'/%3E%3Cstop offset='.55' stop-color='%23ff4fa3'/%3E%3Cstop offset='1' stop-color='%2322d3ee'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23g)'/%3E%3Cpath d='M32 14l3.2 10.8L46 28l-10.8 3.2L32 42l-3.2-10.8L18 28l10.8-3.2z' fill='white'/%3E%3Ccircle cx='46' cy='18' r='3' fill='white' opacity='.9'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- 全局氛围背景 -->
+  <div class="bg-stage" aria-hidden="true">
+    <div class="bg-blob b1"></div>
+    <div class="bg-blob b2"></div>
+    <div class="bg-blob b3"></div>
+    <div class="bg-grid"></div>
+  </div>
+
+  <!-- 顶部导航 -->
+  <header class="topbar" id="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="#market" data-nav="market" aria-label="模玩集市首页">
+        <span class="brand-logo">
+          <svg viewBox="0 0 64 64" width="30" height="30"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c5cff"/><stop offset=".55" stop-color="#ff4fa3"/><stop offset="1" stop-color="#22d3ee"/></linearGradient></defs><rect width="64" height="64" rx="17" fill="url(#lg)"/><path d="M32 14l3.2 10.8L46 28l-10.8 3.2L32 42l-3.2-10.8L18 28l10.8-3.2z" fill="#fff"/><circle cx="46" cy="18" r="3.4" fill="#fff" opacity=".95"/></svg>
+        </span>
+        <span class="brand-text">
+          <b>模玩集市</b>
+          <i>FIGUREVERSE</i>
+        </span>
+      </a>
+
+      <div class="search-box glass">
+        <svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        <input id="globalSearch" type="text" placeholder="搜索手办、系列、角色… 如「初音未来」「一番赏」" autocomplete="off">
+        <div class="hot-search">
+          <span>热门：</span>
+          <button data-q="一番赏">一番赏</button>
+          <button data-q="粘土人">粘土人</button>
+          <button data-q="雕像">雕像</button>
+          <button data-q="已鉴定">已鉴定</button>
+        </div>
+      </div>
+
+      <div class="top-actions">
+        <button class="btn btn-primary btn-publish" id="publishBtn" aria-label="发布">
+          <svg class="ic" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          <span class="pub-label">发布</span>
+        </button>
+        <button class="icon-btn" id="bellBtn" aria-label="通知">
+          <svg class="ic" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          <span class="dot"></span>
+        </button>
+        <button class="icon-btn" id="walletBtn" aria-label="我的钱包">
+          <svg class="ic" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="13" rx="3"/><path d="M16 12.5h.01"/><path d="M2 10h20"/></svg>
+        </button>
+        <button class="avatar-btn" id="userBtn">
+          <span class="avatar avatar-lg avatar-me">喵</span>
+          <span class="user-caret">
+            <svg class="ic" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+          </span>
+        </button>
+      </div>
+    </div>
+
+    <!-- 通知面板 -->
+    <div class="notice-panel glass" id="noticePanel" hidden>
+      <div class="notice-head">
+        <b>消息通知</b>
+        <button class="text-btn" id="noticeClear">全部已读</button>
+      </div>
+      <div id="noticeList"></div>
+    </div>
+
+    <!-- 用户面板 -->
+    <div class="user-panel glass" id="userPanel" hidden>
+      <div class="up-top">
+        <span class="avatar avatar-xl avatar-me">喵</span>
+        <div><b id="upName">模玩星人</b><small>LV.12 · 老玩家</small></div>
+      </div>
+      <div class="up-stats">
+        <div><b>12</b><span>在售</span></div>
+        <div><b>36</b><span>已购</span></div>
+        <div><b>4.9</b><span>信用分</span></div>
+      </div>
+      <button class="btn btn-soft w-full" id="loginBtn">切换账号 / 登录</button>
+    </div>
+  </header>
+
+  <!-- 主体三栏 -->
+  <div class="shell">
+
+    <aside class="sidebar" id="sidebar">
+      <nav class="side-nav glass">
+        <div class="side-label">逛逛</div>
+        <a class="side-item active" href="#market" data-nav="market">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></svg>
+          <span>发现市场</span>
+        </a>
+        <a class="side-item" href="#community" data-nav="community">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8z"/></svg>
+          <span>社区广场</span>
+        </a>
+        <a class="side-item" href="#wanted" data-nav="wanted">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 18-8-8 18-2.5-7.5z"/><path d="M3 11 21 3"/></svg>
+          <span>求购大厅</span>
+          <em class="side-badge">38</em>
+        </a>
+        <a class="side-item" href="#auth" data-nav="auth">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-3.5 8-10V5l-8-3-8 3v7c0 6.5 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+          <span>鉴定中心</span>
+        </a>
+
+        <div class="side-label">我的</div>
+        <a class="side-item" href="#chat" data-nav="chat">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/></svg>
+          <span>站内聊天</span>
+          <em class="side-badge hot">2</em>
+        </a>
+        <a class="side-item" href="#orders" data-nav="orders">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h12l4 6-10 14L2 8z"/><path d="M2 8h20"/><path d="M9 8 8 2M15 8l1-6"/></svg>
+          <span>我的订单</span>
+        </a>
+        <a class="side-item" href="#favs" data-nav="favs">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.5-1.4 3-3.2 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.8 0-3.4 1-4.5 2.5C10.9 4 9.3 3 7.5 3A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.1 3 5.5l7 7z"/></svg>
+          <span>我的收藏</span>
+        </a>
+      </nav>
+
+      <div class="side-card glass">
+        <div class="side-card-icon">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-3.5 8-10V5l-8-3-8 3v7c0 6.5 8 10 8 10z"/></svg>
+        </div>
+        <b>资金托管 · 假一赔三</b>
+        <p>每一笔交易都由平台担保，买家确认收货后卖家才能收到货款。</p>
+        <button class="btn btn-ghost w-full" data-nav="auth">了解保障机制</button>
+      </div>
+
+      <div class="side-user glass">
+        <span class="avatar avatar-md avatar-me">喵</span>
+        <div class="su-info">
+          <b>模玩星人</b>
+          <span>LV.12 · 信用 4.9</span>
+        </div>
+        <span class="su-online"></span>
+      </div>
+    </aside>
+
+    <main class="main" id="view" tabindex="-1"></main>
+
+    <aside class="rail" id="rail">
+      <div class="rail-card glass">
+        <div class="rail-title"><span>🔥</span> 本周热议</div>
+        <ol class="hot-list" id="hotList"></ol>
+      </div>
+      <div class="rail-card glass">
+        <div class="rail-title"><span>✳</span> 鉴定动态</div>
+        <div class="cert-feed" id="certFeed"></div>
+      </div>
+      <div class="rail-card glass">
+        <div class="rail-title"><span>#</span> 热门标签</div>
+        <div class="tag-cloud" id="tagCloud"></div>
+      </div>
+      <div class="rail-card glass">
+        <div class="rail-title"><span>◎</span> 平台公告</div>
+        <div class="notice-feed" id="noticeFeed"></div>
+      </div>
+    </aside>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <b>模玩集市 FIGUREVERSE</b>
+        <p>专注手办模型的交易 · 社区 · 鉴定担保平台</p>
+      </div>
+      <div class="footer-links">
+        <a href="#auth" data-nav="auth">鉴定规则</a>
+        <a href="#">交易协议</a>
+        <a href="#">隐私政策</a>
+        <a href="#">帮助中心</a>
+        <a href="#">联系我们</a>
+      </div>
+      <div class="footer-note">演示站点 · 所有数据均为示例内容，仅供产品体验参考</div>
+    </div>
+  </footer>
+
+  <!-- 移动端底部导航 -->
+  <nav class="mobile-nav glass" id="mobileNav">
+    <a href="#market" data-nav="market"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></svg><span>市集</span></a>
+    <a href="#community" data-nav="community"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8z"/></svg><span>社区</span></a>
+    <a href="#wanted" data-nav="wanted"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 18-8-8 18-2.5-7.5z"/></svg><span>求购</span></a>
+    <a href="#auth" data-nav="auth"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-3.5 8-10V5l-8-3-8 3v7c0 6.5 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg><span>鉴定</span></a>
+    <a href="#chat" data-nav="chat"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/></svg><span>聊天</span></a>
+  </nav>
+
+  <div class="modal-mask" id="modalRoot"></div>
+  <div class="toast-root" id="toastRoot"></div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
