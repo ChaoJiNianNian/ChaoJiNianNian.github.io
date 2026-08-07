@@ -28,6 +28,13 @@ python -m http.server 8000 --directory .
 index.html        页面骨架
 css/style.css     设计系统与全部样式（暗色霓虹 + 玻璃拟态）
 js/app.js         数据、视图渲染与全部交互
+assets/figures/   真实手办照片（示例商品图）
 ```
+
+## 图片来源
+
+商品与社区配图来自 Wikimedia Commons 与 Flickr 上的 CC 授权手办照片
+（CC0 / CC BY / CC BY-SA），完整清单见 `assets/figures/_attribution.json`。
+本页面仅作产品演示用途，正式商用请替换为自有版权图片。
 
 > 说明：所有商品、用户、订单数据均为前端示例数据，仅供产品体验演示。

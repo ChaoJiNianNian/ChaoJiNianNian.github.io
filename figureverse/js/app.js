@@ -74,27 +74,29 @@ const state = {
  * 示例数据
  * ================================================================ */
 const PRODUCTS = [
-  { id: 'p1', name: '初音未来 V4X 1/7 手办', series: 'VOCALOID', cat: '手办', price: 1280, orig: 1599, cond: '全新未拆', cert: '已鉴定', art: 'twin', palette: ['#22d3ee', '#a78bfa', '#f0abfc'], seller: '秋叶原仓鼠', level: '皇冠卖家', rating: 4.98, sales: 342, likes: 812, tags: ['日版', '带特典', '可小刀'], ship: '东京 → 上海', time: '2小时前', featured: true },
-  { id: 'p2', name: '明日方舟 阿米娅 粘土人 全可动', series: '明日方舟', cat: '粘土人', price: 268, orig: 329, cond: '仅拆检', cert: '待鉴定', art: 'cat', palette: ['#fb923c', '#f472b6', '#fde68a'], seller: '胶佬阿伟', level: '钻石卖家', rating: 4.92, sales: 158, likes: 231, tags: ['国行', '配件全', '顺丰包邮'], ship: '广州 → 全国', time: '5小时前' },
-  { id: 'p3', name: '鬼灭之刃 灶门炭治郎 1/8 燃烧ver', series: '鬼灭之刃', cat: '手办', price: 458, orig: 520, cond: '九成新', cert: '已鉴定', art: 'sword', palette: ['#34d399', '#0ea5a4', '#fbbf24'], seller: '模玩小仓库', level: '皇冠卖家', rating: 4.95, sales: 96, likes: 154, tags: ['日版', '有盒说'], ship: '上海', time: '昨天' },
-  { id: 'p4', name: '魔女之旅 伊蕾娜 1/7 星月夜', series: '魔女之旅', cat: '手办', price: 899, orig: 1080, cond: '全新未拆', cert: '已鉴定', art: 'witch', palette: ['#a78bfa', '#7c5cff', '#f0abfc'], seller: '二次元老张', level: '金牌卖家', rating: 4.88, sales: 64, likes: 402, tags: ['日版', '特典挂画', '慢出'], ship: '杭州', time: '3天前' },
-  { id: 'p5', name: 'FGO 贞德Alter 1/7 黑贞', series: 'Fate', cat: '手办', price: 1560, orig: 1750, cond: '仅拆检', cert: '已鉴定', art: 'knight', palette: ['#fb7185', '#7c5cff', '#f472b6'], seller: '未拆箱的夏天', level: '皇冠卖家', rating: 4.99, sales: 47, likes: 620, tags: ['日版', '无瑕疵', '已鉴定'], ship: '北京', time: '1天前', featured: true },
-  { id: 'p6', name: '兔女郎 拉姆 1/4 蕾丝ver', series: 'RE:0', cat: '手办', price: 2199, orig: 2480, cond: '九成新', cert: '待鉴定', art: 'bunny', palette: ['#f43f5e', '#fb7185', '#fda4af'], seller: '胶佬阿伟', level: '钻石卖家', rating: 4.92, sales: 21, likes: 388, tags: ['限定', '带盒', '仅售同城'], ship: '广州', time: '2天前' },
-  { id: 'p7', name: '高达 RX-0 独角兽 完美形态 PG', series: '高达', cat: '周边', price: 1380, orig: 1500, cond: '全新未拆', cert: '已鉴定', art: 'mecha', palette: ['#38bdf8', '#6366f1', '#7ce5f5'], seller: '胶佬阿伟', level: '钻石卖家', rating: 4.92, sales: 128, likes: 265, tags: ['万代正版', '未拼装', '可验货'], ship: '广州 → 全国', time: '4小时前' },
-  { id: 'p8', name: '学园偶像 穗乃果 一番赏 A赏', series: 'LL!', cat: '一番赏', price: 98, orig: 120, cond: '全新未拆', cert: '待鉴定', art: 'school', palette: ['#fbbf24', '#fb923c', '#fff3bf'], seller: '咸鱼翻身中', level: '银牌卖家', rating: 4.76, sales: 512, likes: 96, tags: ['盲盒', '保A赏', '现货'], ship: '深圳', time: '30分钟前' },
-  { id: 'p9', name: '初音未来 一番赏2024 B赏 双人', series: 'VOCALOID', cat: '一番赏', price: 328, orig: 399, cond: '仅拆检', cert: '已鉴定', art: 'twin', palette: ['#f0abfc', '#f472b6', '#fff3bf'], seller: '峡谷收藏家', level: '金牌卖家', rating: 4.9, sales: 204, likes: 176, tags: ['现货', '拍下48h发'], ship: '成都', time: '6小时前' },
-  { id: 'p10', name: '明日方舟 斯卡蒂 泳装 1/7', series: '明日方舟', cat: '手办', price: 1100, orig: 1290, cond: '九成新', cert: '已鉴定', art: 'cat', palette: ['#2dd4bf', '#0ea5e9', '#a5f3fc'], seller: '模玩小仓库', level: '皇冠卖家', rating: 4.95, sales: 38, likes: 291, tags: ['日版', '无盒', '可视频验货'], ship: '上海', time: '4天前' },
-  { id: 'p11', name: '原神 雷电将军 1/7 雷光', series: '原神', cat: '手办', price: 1690, orig: 1890, cond: '全新未拆', cert: '待鉴定', art: 'knight', palette: ['#a78bfa', '#c084fc', '#fde68a'], seller: '未拆箱的夏天', level: '皇冠卖家', rating: 4.99, sales: 29, likes: 540, tags: ['国行', '首批特典', '包鉴定费'], ship: '北京', time: '8小时前', featured: true },
-  { id: 'p12', name: '缘之空 春日野穹 1/7 浴衣', series: '缘之空', cat: '手办', price: 760, orig: 880, cond: '展示品', cert: '已鉴定', art: 'twin', palette: ['#e2e8f0', '#94a3b8', '#f8fafc'], seller: '峡谷收藏家', level: '金牌卖家', rating: 4.9, sales: 83, likes: 310, tags: ['有盒', '瑕疵已标注'], ship: '成都', time: '5天前' },
+  { id: 'p1', name: '初音未来 V4X 1/7 手办', series: 'VOCALOID', cat: '手办', price: 1280, orig: 1599, cond: '全新未拆', cert: '已鉴定', img: 'f01.jpg', palette: ['#22d3ee', '#a78bfa', '#f0abfc'], seller: '秋叶原仓鼠', level: '皇冠卖家', rating: 4.98, sales: 342, likes: 812, tags: ['日版', '带特典', '可小刀'], ship: '东京 → 上海', time: '2小时前', featured: true },
+  { id: 'p2', name: '明日方舟 阿米娅 粘土人 全可动', series: '明日方舟', cat: '粘土人', price: 268, orig: 329, cond: '仅拆检', cert: '未鉴定', img: 'f02.jpg', palette: ['#fb923c', '#f472b6', '#fde68a'], seller: '胶佬阿伟', level: '钻石卖家', rating: 4.92, sales: 158, likes: 231, tags: ['国行', '配件全', '顺丰包邮'], ship: '广州 → 全国', time: '5小时前' },
+  { id: 'p3', name: '鬼灭之刃 灶门炭治郎 1/8 燃烧ver', series: '鬼灭之刃', cat: '手办', price: 458, orig: 520, cond: '九成新', cert: '已鉴定', img: 'f03.jpg', palette: ['#34d399', '#0ea5a4', '#fbbf24'], seller: '模玩小仓库', level: '皇冠卖家', rating: 4.95, sales: 96, likes: 154, tags: ['日版', '有盒说'], ship: '上海', time: '昨天' },
+  { id: 'p4', name: '魔女之旅 伊蕾娜 1/7 星月夜', series: '魔女之旅', cat: '手办', price: 899, orig: 1080, cond: '全新未拆', cert: '已鉴定', img: 'f04.jpg', palette: ['#a78bfa', '#7c5cff', '#f0abfc'], seller: '二次元老张', level: '金牌卖家', rating: 4.88, sales: 64, likes: 402, tags: ['日版', '特典挂画', '慢出'], ship: '杭州', time: '3天前' },
+  { id: 'p5', name: 'FGO 贞德Alter 1/7 黑贞', series: 'Fate', cat: '手办', price: 1560, orig: 1750, cond: '仅拆检', cert: '已鉴定', img: 'f05.jpg', palette: ['#fb7185', '#7c5cff', '#f472b6'], seller: '未拆箱的夏天', level: '皇冠卖家', rating: 4.99, sales: 47, likes: 620, tags: ['日版', '无瑕疵', '已鉴定'], ship: '北京', time: '1天前', featured: true },
+  { id: 'p6', name: '兔女郎 拉姆 1/4 蕾丝ver', series: 'RE:0', cat: '手办', price: 2199, orig: 2480, cond: '九成新', cert: '未鉴定', img: 'f06.jpg', palette: ['#f43f5e', '#fb7185', '#fda4af'], seller: '胶佬阿伟', level: '钻石卖家', rating: 4.92, sales: 21, likes: 388, tags: ['限定', '带盒', '仅售同城'], ship: '广州', time: '2天前' },
+  { id: 'p7', name: '高达 RX-0 独角兽 完美形态 PG', series: '高达', cat: '周边', price: 1380, orig: 1500, cond: '全新未拆', cert: '已鉴定', img: 'f07.jpg', palette: ['#38bdf8', '#6366f1', '#7ce5f5'], seller: '胶佬阿伟', level: '钻石卖家', rating: 4.92, sales: 128, likes: 265, tags: ['万代正版', '未拼装', '可验货'], ship: '广州 → 全国', time: '4小时前' },
+  { id: 'p8', name: '学园偶像 穗乃果 一番赏 A赏', series: 'LL!', cat: '一番赏', price: 98, orig: 120, cond: '全新未拆', cert: '未鉴定', img: 'f08.jpg', palette: ['#fbbf24', '#fb923c', '#fff3bf'], seller: '咸鱼翻身中', level: '银牌卖家', rating: 4.76, sales: 512, likes: 96, tags: ['盲盒', '保A赏', '现货'], ship: '深圳', time: '30分钟前' },
+  { id: 'p9', name: '初音未来 一番赏2024 B赏 双人', series: 'VOCALOID', cat: '一番赏', price: 328, orig: 399, cond: '仅拆检', cert: '已鉴定', img: 'f09.jpg', palette: ['#f0abfc', '#f472b6', '#fff3bf'], seller: '峡谷收藏家', level: '金牌卖家', rating: 4.9, sales: 204, likes: 176, tags: ['现货', '拍下48h发'], ship: '成都', time: '6小时前' },
+  { id: 'p10', name: '明日方舟 斯卡蒂 泳装 1/7', series: '明日方舟', cat: '手办', price: 1100, orig: 1290, cond: '九成新', cert: '已鉴定', img: 'f10.jpg', palette: ['#2dd4bf', '#0ea5e9', '#a5f3fc'], seller: '模玩小仓库', level: '皇冠卖家', rating: 4.95, sales: 38, likes: 291, tags: ['日版', '无盒', '可视频验货'], ship: '上海', time: '4天前' },
+  { id: 'p11', name: '原神 雷电将军 1/7 雷光', series: '原神', cat: '手办', price: 1690, orig: 1890, cond: '全新未拆', cert: '未鉴定', img: 'f11.jpg', palette: ['#a78bfa', '#c084fc', '#fde68a'], seller: '未拆箱的夏天', level: '皇冠卖家', rating: 4.99, sales: 29, likes: 540, tags: ['国行', '首批特典', '包鉴定费'], ship: '北京', time: '8小时前', featured: true },
+  { id: 'p12', name: '缘之空 春日野穹 1/7 浴衣', series: '缘之空', cat: '手办', price: 760, orig: 880, cond: '展示品', cert: '已鉴定', img: 'f12.jpg', palette: ['#e2e8f0', '#94a3b8', '#f8fafc'], seller: '峡谷收藏家', level: '金牌卖家', rating: 4.9, sales: 83, likes: 310, tags: ['有盒', '瑕疵已标注'], ship: '成都', time: '5天前' },
 ];
 
+const POST_IMG = ['f01.jpg', 'f02.jpg', 'f03.jpg', 'f04.jpg', 'f05.jpg', 'f06.jpg', 'f07.jpg', 'f08.jpg', 'f09.jpg', 'f10.jpg', 'f11.jpg', 'f12.jpg', 'x-shelf.jpg', 'x-store.jpg', 'x-con.jpg', 'x-plastic.jpg'];
+
 const POSTS = [
-  { id: 'post1', author: '秋叶原仓鼠', level: '皇冠', tag: '晒图', tagCls: 'tag-pink', time: '28分钟前', title: '入坑三年，晒晒我的初音全系列墙柜！', desc: '从第一只景品到现在，终于把初音的正比例基本收齐了。柜子加了RGB灯带，晚上看效果绝了。想问下大家防潮和除尘都是怎么做的？', art: 'twin', palette: ['#22d3ee', '#a78bfa', '#f0abfc'], likes: 342, comments: 87, views: '2.1w' },
-  { id: 'post2', author: '胶佬阿伟', level: '钻石', tag: '教程', tagCls: 'tag-cyan', time: '1小时前', title: '手办保养防氧化指南（建议收藏）', desc: '1. 避光陈列，UV灯尽量别照；2. 透明展示盒里放硅胶干燥剂；3. 塑料件氧化变黄可用双氧水+阳光翻新（需谨慎）；4. 关节松动用关节加固液……欢迎补充。', art: 'school', palette: ['#38bdf8', '#6366f1', '#7ce5f5'], likes: 1280, comments: 236, views: '8.7w' },
-  { id: 'post3', author: '未拆箱的夏天', level: '皇冠', tag: '讨论', tagCls: 'tag-amber', time: '3小时前', title: '现在买手办，你们还看「厂牌」吗？', desc: '最近发现同价位不同厂牌做工差距真的很大，有些小厂细节甚至吊打大厂。大家买的时候会优先看厂牌、原型师还是直接看实物图？理性讨论。', art: 'cat', palette: ['#fb923c', '#f472b6', '#fde68a'], likes: 511, comments: 178, views: '3.4w' },
-  { id: 'post4', author: '峡谷收藏家', level: '金牌', tag: '开箱', tagCls: 'tag-green', time: '5小时前', title: '雷电将军 1/7 开箱，品控超出预期', desc: '等了半年终于到了。整体涂装干净，脸相很还原，底座特效件透光效果拉满。顺手拍了细节图，供想入的朋友参考～', art: 'knight', palette: ['#a78bfa', '#c084fc', '#fde68a'], likes: 288, comments: 64, views: '1.9w' },
-  { id: 'post5', author: '二次元老张', level: '金牌', tag: '求助', tagCls: 'tag-red', time: '8小时前', title: '求助：收来的手办中奖了，卖家不认怎么办？', desc: '通过平台担保交易收了一只景品，拆盒后发现脚部有溢色。已按流程申请平台介入并寄去鉴定，目前等结果中。提醒大家大额交易一定走担保和鉴定！', art: 'sword', palette: ['#34d399', '#0ea5a4', '#fbbf24'], likes: 156, comments: 92, views: '9.6k' },
-  { id: 'post6', author: '咸鱼翻身中', level: '银牌', tag: '晒图', tagCls: 'tag-pink', time: '昨天', title: '一番赏抽到A赏啦！欧气分享', desc: '本来只是想试试水，结果第一发就是A赏初音！当场和旁边的小哥换了B赏双人。分享一下欧气，接好运！', art: 'twin', palette: ['#f0abfc', '#f472b6', '#fff3bf'], likes: 902, comments: 143, views: '5.2w' },
+  { id: 'post1', author: '秋叶原仓鼠', level: '皇冠', tag: '晒图', tagCls: 'tag-pink', time: '28分钟前', title: '入坑三年，晒晒我的初音全系列墙柜！', desc: '从第一只景品到现在，终于把初音的正比例基本收齐了。柜子加了RGB灯带，晚上看效果绝了。想问下大家防潮和除尘都是怎么做的？', img: 'f01.jpg', likes: 342, comments: 87, views: '2.1w' },
+  { id: 'post2', author: '胶佬阿伟', level: '钻石', tag: '教程', tagCls: 'tag-cyan', time: '1小时前', title: '手办保养防氧化指南（建议收藏）', desc: '1. 避光陈列，UV灯尽量别照；2. 透明展示盒里放硅胶干燥剂；3. 塑料件氧化变黄可用双氧水+阳光翻新（需谨慎）；4. 关节松动用关节加固液……欢迎补充。', img: 'x-shelf.jpg', likes: 1280, comments: 236, views: '8.7w' },
+  { id: 'post3', author: '未拆箱的夏天', level: '皇冠', tag: '讨论', tagCls: 'tag-amber', time: '3小时前', title: '现在买手办，你们还看「厂牌」吗？', desc: '最近发现同价位不同厂牌做工差距真的很大，有些小厂细节甚至吊打大厂。大家买的时候会优先看厂牌、原型师还是直接看实物图？理性讨论。', img: 'x-con.jpg', likes: 511, comments: 178, views: '3.4w' },
+  { id: 'post4', author: '峡谷收藏家', level: '金牌', tag: '开箱', tagCls: 'tag-green', time: '5小时前', title: '雷电将军 1/7 开箱，品控超出预期', desc: '等了半年终于到了。整体涂装干净，脸相很还原，底座特效件透光效果拉满。顺手拍了细节图，供想入的朋友参考～', img: 'f11.jpg', likes: 288, comments: 64, views: '1.9w' },
+  { id: 'post5', author: '二次元老张', level: '金牌', tag: '求助', tagCls: 'tag-red', time: '8小时前', title: '求助：收来的手办中奖了，卖家不认怎么办？', desc: '通过平台担保交易收了一只景品，拆盒后发现脚部有溢色。已按流程申请平台介入并寄去鉴定，目前等结果中。提醒大家大额交易一定走担保和鉴定！', img: 'f05.jpg', likes: 156, comments: 92, views: '9.6k' },
+  { id: 'post6', author: '咸鱼翻身中', level: '银牌', tag: '晒图', tagCls: 'tag-pink', time: '昨天', title: '一番赏抽到A赏啦！欧气分享', desc: '本来只是想试试水，结果第一发就是A赏初音！当场和旁边的小哥换了B赏双人。分享一下欧气，接好运！', img: 'f08.jpg', likes: 902, comments: 143, views: '5.2w' },
 ];
 
 const WANTS = [
@@ -176,10 +178,10 @@ const DEALS = [
 ];
 
 const ORDERS_SEED = [
-  { id: 'FV20260807001', name: '初音未来 V4X 1/7 手办', price: 1280, status: '托管中', statusCls: 'st-hold', art: 'twin', palette: ['#22d3ee', '#a78bfa', '#f0abfc'], time: '08-07 10:32' },
-  { id: 'FV20260805002', name: '明日方舟 阿米娅 粘土人', price: 268, status: '鉴定中', statusCls: 'st-auth', art: 'cat', palette: ['#fb923c', '#f472b6', '#fde68a'], time: '08-05 15:10' },
-  { id: 'FV20260802003', name: '高达 RX-0 独角兽 PG', price: 1380, status: '运输中', statusCls: 'st-shipping', art: 'mecha', palette: ['#38bdf8', '#6366f1', '#7ce5f5'], time: '08-02 09:44' },
-  { id: 'FV20260728004', name: '春日野穹 1/7 浴衣', price: 760, status: '已完成', statusCls: 'st-done', art: 'twin', palette: ['#e2e8f0', '#94a3b8', '#f8fafc'], time: '07-28 20:16' },
+  { id: 'FV20260807001', name: '初音未来 V4X 1/7 手办', price: 1280, status: '托管中', statusCls: 'st-hold', img: 'f01.jpg', palette: ['#22d3ee', '#a78bfa', '#f0abfc'], time: '08-07 10:32' },
+  { id: 'FV20260805002', name: '明日方舟 阿米娅 粘土人', price: 268, status: '鉴定中', statusCls: 'st-auth', img: 'f02.jpg', palette: ['#fb923c', '#f472b6', '#fde68a'], time: '08-05 15:10' },
+  { id: 'FV20260802003', name: '高达 RX-0 独角兽 PG', price: 1380, status: '运输中', statusCls: 'st-shipping', img: 'f07.jpg', palette: ['#38bdf8', '#6366f1', '#7ce5f5'], time: '08-02 09:44' },
+  { id: 'FV20260728004', name: '春日野穹 1/7 浴衣', price: 760, status: '已完成', statusCls: 'st-done', img: 'f12.jpg', palette: ['#e2e8f0', '#94a3b8', '#f8fafc'], time: '07-28 20:16' },
 ];
 
 /* ================================================================
@@ -323,6 +325,9 @@ function FIGURES(type, c1, c2, c3) {
 }
 
 function productArt(item) {
+  if (item.img) {
+    return `<img class="fig-img" src="assets/figures/${item.img}" alt="${esc(item.name || '手办模型')}" loading="lazy">`;
+  }
   const id = uid(item.id);
   const [c1, c2, c3] = item.palette;
   const artId = uid(item.id + item.art);
@@ -353,8 +358,8 @@ function productArt(item) {
 }
 
 /* 简化场景版（帖子配图用） */
-function sceneArt(type, palette) {
-  return productArt({ id: 's' + type + (palette[0] || ''), art: type, palette });
+function photoTag(src, alt, cls = 'fig-img') {
+  return `<img class="${cls}" src="assets/figures/${src}" alt="${esc(alt || '手办模型')}" loading="lazy">`;
 }
 
 /* ================================================================
@@ -548,10 +553,11 @@ function wantCard(w) {
 
 function postCard(p) {
   const liked = state.likes.has(p.id);
+  const pal = p.palette || ['#7c5cff', '#ff4fa3'];
   return `
   <article class="post-card reveal" data-id="${p.id}">
     <div class="post-head">
-      <span class="avatar avatar-md" style="--a1:${p.palette[0]};--a2:${p.palette[1]}">${p.author[0]}</span>
+      <span class="avatar avatar-md" style="--a1:${pal[0]};--a2:${pal[1]}">${p.author[0]}</span>
       <div class="post-author">
         <b>${p.author}</b>
         <div class="pa-sub"><span class="tag ${p.tagCls}">${p.tag}</span><span>${p.level}玩家</span><span>·</span><span>${p.time}</span></div>
@@ -561,7 +567,7 @@ function postCard(p) {
     <div class="post-body">
       <h3 class="post-title">${p.title}</h3>
       <p class="post-desc">${p.desc}</p>
-      ${p.art ? `<div class="post-img">${sceneArt(p.art, p.palette)}</div>` : ''}
+      ${p.img ? `<div class="post-img">${photoTag(p.img, p.title)}</div>` : ''}
     </div>
     <div class="post-actions">
       <button class="act-btn ${liked ? 'liked' : ''}" data-plike="${p.id}">${icon('thumbs', 14)} <span>${fmt(p.likes + (liked ? 1 : 0))}</span></button>
@@ -725,7 +731,7 @@ function renderOrders() {
   const list = [...ORDERS_SEED, ...state.orders];
   const rows = list.length ? list.map(o => `
     <div class="order-card reveal">
-      <div class="order-thumb">${productArt({ id: o.id, art: o.art, palette: o.palette })}</div>
+      <div class="order-thumb">${productArt({ id: o.id, img: o.img, name: o.name, palette: o.palette })}</div>
       <div class="order-main">
         <b>${o.name}</b>
         <div class="o-sub">订单号 ${o.id} · ${o.time}</div>
@@ -904,7 +910,7 @@ function openEscrow(p) {
       state.orders.unshift({
         id: 'FV' + Date.now().toString().slice(-10),
         name: p.name, price: p.price, status: '已完成', statusCls: 'st-done',
-        art: p.art, palette: p.palette, time: '刚刚',
+        img: p.img, palette: p.palette, time: '刚刚',
       });
       toast(`已放款给卖家，交易完成。感谢使用担保交易！`, 'success', '交易完成');
       setTimeout(() => { closeModal(); }, 900);
@@ -1014,12 +1020,11 @@ function bindPublishModal(type) {
       const price = Number($('#fPrice').value);
       if (!title || !price) return toast('请填写标题和售价', 'error');
       const palettes = [['#22d3ee', '#a78bfa', '#f0abfc'], ['#f472b6', '#a78bfa', '#fbcfe8'], ['#34d399', '#0ea5a4', '#fbbf24'], ['#fb923c', '#f472b6', '#fde68a'], ['#38bdf8', '#6366f1', '#7ce5f5']];
-      const arts = ['twin', 'cat', 'sword', 'witch', 'knight', 'bunny', 'mecha', 'school'];
       const np = {
         id: 'new' + Date.now(), name: title, series: '玩家发布', cat: $('#fCat').value,
         price, orig: Number($('#fOrig').value) || 0,
         cond: $('#fCond').value, cert: $('#fCert').value.startsWith('送') ? '待鉴定' : '待鉴定',
-        art: pick(arts), palette: pick(palettes), seller: state.userName, level: '新晋卖家',
+        img: pick(POST_IMG), palette: pick(palettes), seller: state.userName, level: '新晋卖家',
         rating: 5.0, sales: 0, likes: 0, tags: ['新发布', '担保交易'], ship: $('#fShip').value || '全国', time: '刚刚',
       };
       PRODUCTS.unshift(np);
@@ -1046,7 +1051,7 @@ function bindPublishModal(type) {
       POSTS.unshift({
         id: 'post' + Date.now(), author: state.userName, level: '新晋', tag: $('#fPTag').value,
         tagCls: 'tag-cyan', time: '刚刚', title,
-        desc: $('#fPDesc').value.trim() || '分享我的收藏故事…', art: pick(['twin', 'cat', 'school', 'sword']),
+        desc: $('#fPDesc').value.trim() || '分享我的收藏故事…', img: pick(POST_IMG),
         palette: pick(palettes), likes: 0, comments: 0, views: '0',
       });
       toast('帖子已发布到社区', 'success', '发布成功');
