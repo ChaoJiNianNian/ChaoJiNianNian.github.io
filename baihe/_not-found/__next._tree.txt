@@ -1,4 +1,4 @@
 :HL["/baihe/_next/static/chunks/3osupogx2up-6.css","style"]
 :HL["/baihe/_next/static/chunks/140cy-ndufhgd.css","style"]
 :HL["/baihe/_next/static/chunks/0imm6tt3tx1cb.css","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":4176,"slots":{"children":{"name":"/_not-found","param":null,"prefetchHints":4192,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":4256,"slots":null}}}}},"staleTime":300,"buildId":"PcYxil9iNBJIQvCko6OqB"}
+0:{"tree":{"name":"","param":null,"prefetchHints":4176,"slots":{"children":{"name":"/_not-found","param":null,"prefetchHints":4192,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":4256,"slots":null}}}}},"staleTime":300,"buildId":"1bUBzDqtEUq_vcPYzmm4X"}
